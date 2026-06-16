@@ -1,4 +1,4 @@
-let maxSquareNumbers = 703000;
+let maxSquareNumbers = 703 * 1000;
 
 function getSquareNumbers(max = 5) {
   const squareNumbers = [];
@@ -12,23 +12,23 @@ function getSquareNumbers(max = 5) {
 
   // Faster, just start at 1 and always square the int and save the produced square for max iterations
   for (let i = 1; i <= max; i++) {
-    squareNumbers.push(i * i);
+    squareNumbers.push(BigInt(i) * BigInt(i));
   }
 
   return squareNumbers;
 }
 
 function filterOddNumbers(arr) {
-  return arr.filter((num) => num % 2 !== 0);
+  return arr.filter((num) => num % 2n !== 0n);
 }
 
 function main() {
   const squareNumbers = getSquareNumbers(maxSquareNumbers);
   const oddNumbers = filterOddNumbers(squareNumbers);
 
-  const sum = oddNumbers.reduce((prev, cur) => prev + cur, 0);
+  const sum = oddNumbers.reduce((prev, cur) => prev + cur, 0n);
   return sum;
 }
 
 const sumOfAllOddNumbers = main();
-console.log("sumOfAllOddNumbers:", sumOfAllOddNumbers);
+console.log("sumOfAllOddNumbers:", sumOfAllOddNumbers.toString());
