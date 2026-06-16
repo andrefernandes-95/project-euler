@@ -26,6 +26,8 @@ function main() {
   const squareNumbers = getSquareNumbers(maxSquareNumbers);
   const oddNumbers = filterOddNumbers(squareNumbers);
 
+  // When summing hundreds of thousands of large squared numbers, the accumulator in .reduce() exceeds Number.MAX_SAFE_INTEGER (2^53 - 1),
+  // causing silent precision loss and a wrong answer. Fix: use BigInt
   const sum = oddNumbers.reduce((prev, cur) => prev + cur, 0n);
   return sum;
 }
